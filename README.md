@@ -11,6 +11,7 @@ Assignment 2 of Experimental Laboratory course, Robotics Engineering faculty UNI
 
 
 
+* [Video](#video)
 * [Autors](#autors)
 
 <div id='introduction'/>
@@ -57,10 +58,20 @@ ros2 run plansys2_patrol_navigation_example patrolling_controller_node
 ```
 
 
+## Logic
+**Patrolling_controller_node**
+This node was created to initialyze the PlanSys2 framework in order to correctly navigate in the enviroment and patrol the desired waypoints. Here's a list of everything the node does:
+- Basic knowledge initialization (instances, predicates and connections).
+- Goal definition: depending on the state the node is in, the controller is able to set a specific goal.
+
+**State Machine**:
+  - **STARTING**: At the beginning of the task, the problem with the goal is defined. At this state, we do not know yet which is the marker with the lowest ID, so the goal is to scan all the four markers. As specified above, a marker can be scanned only if the mobile robot is at the relative point.
+  - **PATROL_FINISHED**: At this state, the controller defines the new robot's goal based on received marker IDs. The new goal is to reach the waypoint that corresponds to the marker with the lowest ID.
+  - **GO_BACK**: Handles returning to the waypoint of the marker with the lowest ID and cleans up predicates after completion.
 
 
 
-<div id='Video'/>
+<div id='video'/>
 
 ## Video 👨‍💻
 
